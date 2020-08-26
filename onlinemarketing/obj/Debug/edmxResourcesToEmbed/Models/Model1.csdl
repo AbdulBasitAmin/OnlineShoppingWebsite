@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="onlinemarketingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="adminn">
+    <Key>
+      <PropertyRef Name="ad_id" />
+    </Key>
+    <Property Name="ad_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ad_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="cateogories" Relationship="Self.FK__cateogory__ad_id__15502E78" FromRole="adminn" ToRole="cateogory" />
+  </EntityType>
+  <EntityType Name="cateogory">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cat_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ad_id_fk" Type="Int32" />
+    <NavigationProperty Name="adminn" Relationship="Self.FK__cateogory__ad_id__15502E78" FromRole="cateogory" ToRole="adminn" />
+    <NavigationProperty Name="products" Relationship="Self.FK__product__cat_id___20C1E124" FromRole="cateogory" ToRole="product" />
+    <Property Name="cat_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="pro_id" />
+    </Key>
+    <Property Name="pro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pro_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pro_price" Type="Int32" />
+    <Property Name="pro_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cat_id_fk" Type="Int32" />
+    <Property Name="pro_user_id_fk" Type="Int32" />
+    <NavigationProperty Name="cateogory" Relationship="Self.FK__product__cat_id___20C1E124" FromRole="product" ToRole="cateogory" />
+    <NavigationProperty Name="tbl_user" Relationship="Self.FK__product__pro_use__21B6055D" FromRole="product" ToRole="tbl_user" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="u_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="u_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="u_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="u_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="u_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK__product__pro_use__21B6055D" FromRole="tbl_user" ToRole="product" />
+  </EntityType>
+  <Association Name="FK__cateogory__ad_id__15502E78">
+    <End Role="adminn" Type="Self.adminn" Multiplicity="0..1" />
+    <End Role="cateogory" Type="Self.cateogory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="adminn">
+        <PropertyRef Name="ad_id" />
+      </Principal>
+      <Dependent Role="cateogory">
+        <PropertyRef Name="ad_id_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__cat_id___20C1E124">
+    <End Role="cateogory" Type="Self.cateogory" Multiplicity="0..1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cateogory">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="cat_id_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__product__pro_use__21B6055D">
+    <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="0..1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="pro_user_id_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="onlinemarketingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="adminns" EntityType="Self.adminn" />
+    <EntitySet Name="cateogories" EntityType="Self.cateogory" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+    <AssociationSet Name="FK__cateogory__ad_id__15502E78" Association="Self.FK__cateogory__ad_id__15502E78">
+      <End Role="adminn" EntitySet="adminns" />
+      <End Role="cateogory" EntitySet="cateogories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__cat_id___20C1E124" Association="Self.FK__product__cat_id___20C1E124">
+      <End Role="cateogory" EntitySet="cateogories" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__product__pro_use__21B6055D" Association="Self.FK__product__pro_use__21B6055D">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,211 @@
+﻿
+@using PagedList.Mvc
+@model  PagedList.IPagedList<onlinemarketing.Models.cateogory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View  Category</title>
+    <link href="~/Content/paginition.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+    <link href="~/Content/Cat_Style/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Cat_Style/style.css" rel="stylesheet" />
+    <link href="~/Content/Cat_Style/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Cat_Style/flexslider.css" rel="stylesheet" />
+
+</head>
+
+
+<body>
+
+    <div class="header" id="home1">
+        <div class="container">
+            <div class="w3l_login">
+                <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+            </div>
+            <div class="w3l_logo">
+                <h1><a href="index.html">Electronic Store<span>Your stores. Your place.</span></a></h1>
+            </div>
+
+            <hr />
+
+            <img src="~/Content/img/b1.jpg" style="background-size:cover;margin-top:30px;height:500px" width="100%" />
+
+            <hr />
+            <div class="container" style="height:1150px; ">
+                <div class="row">
+                    <div class="col-lg-12" style="height:100px; border:1px solid solid; ">
+
+
+                    </div>
+
+                </div>
+
+
+
+                <hr />
+                <h1 style="text-align:center"> OUR PRODUCT</h1>
+                <hr />
+
+
+                <div class="row" style="margin-bottom:40px">
+                    @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                            
+
+                            
+                             
+                            
+                            <div class="col-lg-4 col-md-4" style="height:220px;margin-top:160px">
+                                <img src="@Url.Content(item.cat_image)" style=" height:130%;width:100%" />
+                                <br />
+                                <h4 style="color:#808080; font-family:'Arial Rounded MT';text-align:center;margin-top:20px">@item.cat_name</h4>
+                              <br />
+                                  <div style="margin-left:160px">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.cat_id }, new { @class = "btn btn-danger btn-sm" })
+
+                                </div>
+                            </div>
+
+
+
+                        }
+                    }
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+            <div style="margin-top:370px">
+                <div id="container" style="margin-left: 100px">
+                    <p></p>
+                    <p></p>
+                    <div class="pagination" style="margin-left: 400px">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("ViewCategory", new { page }))
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="newsletter">
+                <div class="container">
+                    <div class="col-md-6 w3agile_newsletter_left">
+                        <h3>Newsletter</h3>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
+                    </div>
+                    <div class="col-md-6 w3agile_newsletter_right">
+                        <form action="#" method="post">
+                            <input type="email" name="Email" placeholder="Email" required>
+                            <input type="submit" value="" />
+                        </form>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <!-- //newsletter -->
+            <!-- footer -->
+            <div class="footer">
+                <div class="container">
+                    <div class="w3_footer_grids">
+                        <div class="col-md-3 w3_footer_grid">
+                            <h3>Contact</h3>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                            <ul class="address">
+                                <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
+                                <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
+                                <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 w3_footer_grid">
+                            <h3>Information</h3>
+                            <ul class="info">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="mail.html">Contact Us</a></li>
+                                <li><a href="codes.html">Short Codes</a></li>
+                                <li><a href="faq.html">FAQ's</a></li>
+                                <li><a href="products.html">Special Products</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 w3_footer_grid">
+                            <h3>Category</h3>
+                            <ul class="info">
+                                <li><a href="products.html">Mobiles</a></li>
+                                <li><a href="products1.html">Laptops</a></li>
+                                <li><a href="products.html">Purifiers</a></li>
+                                <li><a href="products1.html">Wearables</a></li>
+                                <li><a href="products2.html">Kitchen</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 w3_footer_grid">
+                            <h3>Profile</h3>
+                            <ul class="info">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="products.html">Today's Deals</a></li>
+                            </ul>
+                            <h4>Follow Us</h4>
+                            <div class="agileits_social_button">
+                                <ul>
+                                    <li><a href="#" class="facebook"> </a></li>
+                                    <li><a href="#" class="twitter"> </a></li>
+                                    <li><a href="#" class="google"> </a></li>
+                                    <li><a href="#" class="pinterest"> </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+               
+                <div class="footer-copy">
+                    <div class="footer-copy1">
+                        <div class="footer-copy-pos">
+                            <a href="#home1" class="scroll"><img src="~/Content/img/arrow.png"  alt=" " class="img-responsive" /></a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <p>&copy; 2020 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">Learning Innovation Academy</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- //footer -->
+            <!-- cart-js -->
+            <script src="js/minicart.js"></script>
+            <script>
+        w3ls.render();
+
+        w3ls.cart.on('w3sb_checkout', function (evt) {
+        	var items, len, i;
+
+        	if (this.subtotal() > 0) {
+        		items = this.items();
+
+        		for (i = 0, len = items.length; i < len; i++) {
+        		}
+        	}
+        });
+            </script>
+            <!-- //cart-js -->
+</body>
+</html>
+

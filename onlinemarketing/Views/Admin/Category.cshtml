@@ -1,0 +1,162 @@
+﻿@model onlinemarketing.Models.cateogory
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<Doctype>
+    <html>
+    <head>
+        <script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+
+
+            </script>
+        <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+              rel="stylesheet">
+
+        <link href="~/Content/AddCat_Style/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/Content/AddCat_Style/style.css" rel="stylesheet" />
+        <link href="~/Content/style.css" rel="stylesheet" />
+     </head>
+
+<hr />
+        <h2 style="text-align:center;color:green">Add Category</h2>
+<hr />
+
+
+        @using (Html.BeginForm("Category","Admin",FormMethod.Post ,new { enctype = "multipart/form-data" }))
+        {
+
+            <body>
+                @*<section class="w3l-forms-main-61">
+                    <div class="form-inner">
+                        <div class="wrapper">
+                            <div class="d-grid top-form">
+                                <div class="logo">
+                                    <a class="brand-logo" href="index.html">
+                                        <span>
+                                            <span class="fa fa-viadeo"
+                                                  aria-hidden="true"></span> Desk Login form
+                                        </span>
+                                    </a>
+                                    <!-- if logo is image enable this
+                                                <a class="brand-logo" href="#index.html">
+                                                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                                                </a> -->
+                                </div>
+                            </div>
+                            <div class="form-bg-blur">
+                                <div class="form-61">
+                                    <h4 class="form-head">Add Category</h4>
+
+                                    <form action="#" method="GET">
+                                        <div class="">
+                                            <p class="text-head">Username</p>
+                                            @Html.TextBoxFor(x => x.cat_name, new { @class = "form-control", @placeholder = "Admin Name" })
+
+                                        </div>
+                                        <span style="color:red">@Html.ValidationMessageFor(x => x.cat_name)</span>
+
+                                        <div class="">
+                                            <p class="text-head">Image:</p>
+                                            <input type="file" name="imgfile" id="imgfile" class="input" required />
+                                        </div>
+
+                                        <input type="submit" value="Login" class="btn btn-success " />
+                                    </form>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="go-to-home text-center">
+                                <p>Want to Create account? <a class="btn" href="signup.html"> Signup </a></p>
+                            </div> -->
+                        </div>
+                        <div class="copyright text-center">
+                            <div class="wrapper">
+                                <p class="copy-footer-29">
+                                    © 2020 Desk Login form. All rights reserved | Designed by <a href="https://w3layouts.com">W3layouts</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>*@
+
+                <div class="main-w3ls">
+                    <div class="left-content">
+                        <div class="w3ls-content">
+                            <!-- logo -->
+                            <h1>
+                                <a href="index.html"><span class="fa fa-magic"></span>Learning Innovation Academy</a>
+                            </h1>
+                            <!-- //logo -->
+                            <h2>Welcome to Admin Dashboard.</h2>
+                            <a href="#" class="button-w3ls">
+                                <span class="fa fa-long-arrow-right"></span>
+                            </a>
+                       
+                        </div>
+                        <!-- copyright -->
+                        <div class="copyright">
+                            <p>
+                                &copy; 2018 Full Screen Enroll Form. All rights reserved | Design by
+                                <a href="ASIT-Tech">ASIT-Tech</a>
+                            </p>
+                        </div>
+                        <!-- //copyright -->
+                    </div>
+                    <div class="right-form-agile">
+                        <!-- content -->
+                        <div class="sub-main-w3">
+                            <h3>Add Category</h3>
+                            <h5>.</h5>
+                            <p></p>
+                            <form action="#" method="post">
+                                <div class="form-style-agile">
+                                    <label>Category Name</label>
+                                    <div class="pom-agile">
+                                        <span class="fa fa-user"></span>
+                             @Html.TextBoxFor(x => x.cat_name, new { @class = "form-control", @placeholder = "Category Name" })
+     </div>
+                                </div>
+                                <span style="color:red">@Html.ValidationMessageFor(x => x.cat_name)</span>
+
+                                <div class="form-style-agile">
+                                    <label>Category</label>
+                                    <div class="pom-agile">
+                                        <span class="fa fa-key"></span>
+                                        <input type="file" name="imgfile" id="imgfile" class="input" required />
+ </div>
+                                </div>
+                                <input type="submit" value="Add">
+                            </form>
+                            <!-- social icons -->
+                            <!-- //social icons -->
+                        </div>
+                    </div>
+                </div>
+                <!-- //content -->
+
+            </body>
+        }
+
+    </html>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @section Scripts
+    {
+
+
+        @Scripts.Render("~/bundles/jqueryval")
+    }
